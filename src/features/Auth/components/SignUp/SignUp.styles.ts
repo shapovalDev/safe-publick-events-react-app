@@ -4,41 +4,25 @@ export const useStyles = makeStyles(() =>
   createStyles({
     root: {
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       alignItems: 'center',
       width: '100vw',
       height: '100vh',
-      padding: '2%',
-      boxSizing: 'border-box',
-    },
-
-    imageBlock: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      boxSizing: 'border-box',
-      width: '60%',
-      height: '100%',
-    },
-
-    img: {
-      width: '30vw',
-      height: '30vw',
     },
 
     form: {
+      display: 'flex',
       justifyContent: 'space-between',
-      width: '40%',
-      height: '40vh',
-      padding: '1% !important',
-      boxSizing: 'border-box',
-      borderRadius: '10px',
-      background: '#FFFFFF',
+      height: '90vh',
     },
 
     input: {
       background: '#FFFFFF',
       borderRadius: '5px',
+    },
+
+    select: {
+      width: '100%',
     },
 
     buttonBlock: {

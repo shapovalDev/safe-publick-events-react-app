@@ -1,18 +1,42 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Box, Button, FormControl, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  FormControl,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import { useStyles } from './SignIn.styles';
-// @ts-ignore
-import covidSafeLogo from '../../assets/covid-19-safe.png';
+import { useStyles } from './SignUp.styles';
+import { IAuthInput, Role } from '../../model/Auth.model';
 import { RoutePath } from '../../../../model/Routing';
-import { IAuthInput } from '../../model/Auth.model';
 
-export const SignIn = (): JSX.Element => {
+export const SignUp = (): JSX.Element => {
   const classes = useStyles();
+
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [role, setRole] = useState<string>('');
 
   const inputs: IAuthInput[] = [
+    {
+      label: 'First Name',
+      type: 'text',
+      value: firstName,
+      changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
+        setFirstName(e.target.value),
+    },
+    {
+      label: 'Last Name',
+      type: 'text',
+      value: lastName,
+      changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
+        setLastName(e.target.value),
+    },
     {
       label: 'Email',
       type: 'text',
@@ -31,12 +55,9 @@ export const SignIn = (): JSX.Element => {
 
   return (
     <Box className={classes.root}>
-      <Box className={classes.imageBlock}>
-        <img className={classes.img} src={covidSafeLogo} alt="" />
-      </Box>
       <FormControl className={classes.form}>
         <Typography variant="h4" justifyContent="center">
-          Sign In
+          Sign Up
         </Typography>
         {inputs.map((input: IAuthInput) => {
           return (
@@ -50,9 +71,21 @@ export const SignIn = (): JSX.Element => {
             />
           );
         })}
+        <Select
+          className={classes.select}
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <MenuItem defaultChecked value={Role.EventOrganizer}>
+            Event organizer
+          </MenuItem>
+          <MenuItem value={Role.SecurityRepresentative}>
+            Security representative
+          </MenuItem>
+        </Select>
         <Box className={classes.buttonBlock}>
-          <NavLink to={RoutePath.SignUp} className={classes.link}>
-            Don't have an account yet? Sign Up!
+          <NavLink to={RoutePath.SignIn} className={classes.link}>
+            Already have an account? Sign In!
           </NavLink>
           <Button
             type="button"
