@@ -1,3 +1,3 @@
 export interface IUser {
-  [key: string]: string
+  [key: string]: string;
 }

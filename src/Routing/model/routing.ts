@@ -1,16 +1,14 @@
-import { App } from '../../App'
+import App from '../../App';
 
 enum RoutePath {
-  SignIn = '/signIn',
-  SignOut = '/signOut',
-  HomePage = '/'
+  HomePage = '/',
 }
 
 export interface IRoute {
-  path: string,
-  component: any,
+  path: string;
+  component: () => JSX.Element;
 }
 
 export const routesArray: IRoute[] = [
   { path: RoutePath.HomePage, component: App },
-]
+];
