@@ -26,11 +26,13 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    'react/no-unescaped-entities': 'off',
     'require-jsdoc': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/no-shadow': 'off',
     'no-use-before-define': 'off',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'off',
     'newline-before-return': 'error',
     'react/jsx-filename-extension': [
       2,
@@ -38,10 +40,10 @@ module.exports = {
     ],
     'import/extensions': 'off',
     'import/no-cycle': 'off',
+    'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
     quotes: [2, 'single'],
     'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': ['error'],
     curly: ['error', 'multi'],
   },
   settings: {
