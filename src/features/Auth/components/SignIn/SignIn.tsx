@@ -2,10 +2,9 @@ import React, { ChangeEvent, useState } from 'react';
 import { Box, Button, FormControl, TextField, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { useStyles } from './SignIn.styles';
-// @ts-ignore
 import covidSafeLogo from '../../assets/covid-19-safe.png';
-import { RoutePath } from '../../../../model/Routing';
 import { IAuthInput } from '../../model/Auth.model';
+import { RoutePath } from '../../../../model/Routing';
 
 export const SignIn = (): JSX.Element => {
   const classes = useStyles();
@@ -17,6 +16,7 @@ export const SignIn = (): JSX.Element => {
       label: 'Email',
       type: 'text',
       value: email,
+      name: 'email',
       changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
         setEmail(e.target.value),
     },
@@ -24,6 +24,7 @@ export const SignIn = (): JSX.Element => {
       label: 'Password',
       type: 'password',
       value: password,
+      name: 'password',
       changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
         setPassword(e.target.value),
     },

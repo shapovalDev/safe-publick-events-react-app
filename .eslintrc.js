@@ -33,7 +33,9 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'off',
     'no-use-before-define': 'off',
     'no-unused-vars': 'off',
-    'newline-before-return': 'error',
+    'newline-before-return': 'off',
+    'prefer-rest-params': 'off',
+    'no-param-reassign': 'off',
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },

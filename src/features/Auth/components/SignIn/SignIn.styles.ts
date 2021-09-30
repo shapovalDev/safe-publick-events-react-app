@@ -29,7 +29,7 @@ export const useStyles = makeStyles(() =>
     form: {
       justifyContent: 'space-between',
       width: '40%',
-      height: '40vh',
+      height: '30vh',
       padding: '1% !important',
       boxSizing: 'border-box',
       borderRadius: '10px',

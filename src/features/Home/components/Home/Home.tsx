@@ -1,6 +1,15 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Container } from '@mui/material';
+import { Header } from '../../../Screen/Header/Header';
+import { useStyles } from './Home.styles';
 
 export const Home = (): JSX.Element => {
-  return <Box>HOME PAGE</Box>;
+  const classes = useStyles();
+
+  return (
+    <>
+      <Header />
+      <Container maxWidth="xl" />
+    </>
+  );
 };
