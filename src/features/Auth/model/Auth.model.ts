@@ -8,7 +8,6 @@ export interface IAuthInput {
   label: string;
   type: string;
   value: string;
-  name: string;
   changeFunction: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 

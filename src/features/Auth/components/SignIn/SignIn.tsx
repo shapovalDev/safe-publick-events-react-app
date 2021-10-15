@@ -19,7 +19,6 @@ export const SignIn = (): JSX.Element => {
       label: t('signIn.emailLabel'),
       type: 'text',
       value: email,
-      name: 'email',
       changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
         setEmail(e.target.value),
     },
@@ -27,7 +26,6 @@ export const SignIn = (): JSX.Element => {
       label: t('signIn.passwordLabel'),
       type: 'password',
       value: password,
-      name: 'password',
       changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
         setPassword(e.target.value),
     },
