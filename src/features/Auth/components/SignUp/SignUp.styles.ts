@@ -13,7 +13,7 @@ export const useStyles = makeStyles(() =>
     form: {
       display: 'flex',
       justifyContent: 'space-between',
-      height: '60vh',
+      height: '80vh',
     },
 
     input: {
