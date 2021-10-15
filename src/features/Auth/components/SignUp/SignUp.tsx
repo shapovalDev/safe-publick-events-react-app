@@ -3,15 +3,15 @@ import {
   Box,
   Button,
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
   TextField,
   Typography,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useStyles } from './SignUp.styles';
-import { IAuthInput, IMenuItem, Role, RoleLabel } from '../../model/Auth.model';
+import { IAuthInput, Role } from '../../model/Auth.model';
 import { RoutePath } from '../../../../model/Routing';
 
 export const SignUp = (): JSX.Element => {
@@ -22,53 +22,37 @@ export const SignUp = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [role, setRole] = useState<string>('');
-  const [organizationName, setOrganizationName] = useState<string>('');
 
-  const isSecurityRole: boolean = role === Role.SecurityRepresentative;
+  const [t] = useTranslation();
 
   const inputs: IAuthInput[] = [
     {
-      label: 'First Name',
+      label: t('signUp.firstNameLabel'),
       type: 'text',
       value: firstName,
-      name: 'firstName',
       changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
         setFirstName(e.target.value),
     },
     {
-      label: 'Last Name',
+      label: t('signUp.lastNameLabel'),
       type: 'text',
       value: lastName,
-      name: 'lastName',
       changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
         setLastName(e.target.value),
     },
     {
-      label: 'Email',
+      label: t('signUp.emailLabel'),
       type: 'text',
       value: email,
-      name: 'email',
       changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
         setEmail(e.target.value),
     },
     {
-      label: 'Password',
+      label: t('signUp.passwordLabel'),
       type: 'password',
       value: password,
-      name: 'password',
       changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
         setPassword(e.target.value),
-    },
-  ];
-
-  const menuItems: IMenuItem[] = [
-    {
-      value: Role.EventOrganizer,
-      label: RoleLabel.EventOrganizer,
-    },
-    {
-      value: Role.SecurityRepresentative,
-      label: RoleLabel.SecurityRepresentative,
     },
   ];
 
@@ -76,67 +60,44 @@ export const SignUp = (): JSX.Element => {
     <Box className={classes.root}>
       <FormControl className={classes.form}>
         <Typography variant="h4" justifyContent="center">
-          Sign Up
+          {t('signUp.title')}
         </Typography>
-
         {inputs.map((input: IAuthInput) => {
           return (
-            <>
-              <TextField
-                className={classes.input}
-                key={input.label}
-                label={input.label}
-                type={input.type}
-                value={input.value}
-                onChange={input.changeFunction}
-              />
-            </>
+            <TextField
+              className={classes.input}
+              key={input.label}
+              label={input.label}
+              type={input.type}
+              value={input.value}
+              onChange={input.changeFunction}
+            />
           );
         })}
-
-        <FormControl>
-          <InputLabel id="demo-simple-select-label">Role</InputLabel>
-          <Select
-            className={classes.select}
-            value={role}
-            label="Role"
-            onChange={(e) => setRole(e.target.value)}
-          >
-            {menuItems.map((item: IMenuItem) => {
-              return (
-                <MenuItem key={item.value} value={item.value}>
-                  {item.label}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-
-        {isSecurityRole && (
-          <TextField
-            autoFocus
-            className={classes.input}
-            label="Organization"
-            type="text"
-            value={organizationName}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setOrganizationName(e.target.value)
-            }
-          />
-        )}
-
+        <Select
+          className={classes.select}
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <MenuItem defaultChecked value={Role.EventOrganizer}>
+            {t('signUp.eventOrganizer')}
+          </MenuItem>
+          <MenuItem value={Role.SecurityRepresentative}>
+            {t('signUp.securityRepresentative')}
+          </MenuItem>
+        </Select>
         <Box className={classes.buttonBlock}>
           <NavLink to={RoutePath.SignIn} className={classes.link}>
-            Already have an account? Sign In!
+            {t('signUp.createdAccount')}
           </NavLink>
           <Button
-            type="submit"
+            type="button"
             color="primary"
             variant="contained"
             size="medium"
             className={classes.submitButton}
           >
-            Submit
+            {t('signUp.submitButton')}
           </Button>
         </Box>
       </FormControl>

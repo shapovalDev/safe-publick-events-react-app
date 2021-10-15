@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Box, Button, FormControl, TextField, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useStyles } from './SignIn.styles';
 import covidSafeLogo from '../../assets/covid-19-safe.png';
 import { IAuthInput } from '../../model/Auth.model';
@@ -11,9 +12,11 @@ export const SignIn = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  const [t] = useTranslation();
+
   const inputs: IAuthInput[] = [
     {
-      label: 'Email',
+      label: t('signIn.emailLabel'),
       type: 'text',
       value: email,
       name: 'email',
@@ -21,7 +24,7 @@ export const SignIn = (): JSX.Element => {
         setEmail(e.target.value),
     },
     {
-      label: 'Password',
+      label: t('signIn.passwordLabel'),
       type: 'password',
       value: password,
       name: 'password',
@@ -37,7 +40,7 @@ export const SignIn = (): JSX.Element => {
       </Box>
       <FormControl className={classes.form}>
         <Typography variant="h4" justifyContent="center">
-          Sign In
+          {t('signIn.title')}
         </Typography>
         {inputs.map((input: IAuthInput) => {
           return (
@@ -53,7 +56,7 @@ export const SignIn = (): JSX.Element => {
         })}
         <Box className={classes.buttonBlock}>
           <NavLink to={RoutePath.SignUp} className={classes.link}>
-            Don't have an account yet? Sign Up!
+            {t('signIn.noAccount')}
           </NavLink>
           <Button
             type="button"
@@ -62,7 +65,7 @@ export const SignIn = (): JSX.Element => {
             size="medium"
             className={classes.submitButton}
           >
-            Submit
+            {t('signIn.submitButton')}
           </Button>
         </Box>
       </FormControl>

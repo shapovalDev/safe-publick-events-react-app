@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
-
-window.document.body.style.margin = '0px';
+import './features/i18n/i18n';
 
 const app = (
   <BrowserRouter>
-    <App />
+    <Suspense fallback={<h3>Loading...</h3>}>
+      <App />
+    </Suspense>
   </BrowserRouter>
 );
 

@@ -1,0 +1,24 @@
+{
+  "signUp": {
+    "title": "Sign Up",
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "eventOrganizer": "Event organizer",
+    "securityRepresentative": "Security representative",
+    "createdAccount": "Already have an account? Sign In!",
+    "submitButton": "Submit"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "noAccount": "Don't have an account yet? Sign Up!",
+    "submitButton": "Submit"
+  },
+  "language": {
+    "en": "en",
+    "ua": "ua"
+  }
+}

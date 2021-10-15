@@ -1,15 +1,15 @@
 import React from 'react';
-import { Container } from '@mui/material';
-import { Header } from '../../../Screen/Header/Header';
-import { useStyles } from './Home.styles';
+import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../../../i18n';
 
 export const Home = (): JSX.Element => {
-  const classes = useStyles();
+  const [t] = useTranslation();
 
   return (
-    <>
-      <Header />
-      <Container maxWidth="xl" />
-    </>
+    <Box>
+      <LanguageSwitcher />
+      {t('signUp.title')}
+    </Box>
   );
 };
