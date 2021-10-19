@@ -31,6 +31,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-shadow': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'no-use-before-define': 'off',
     'no-unused-vars': 'off',
     'newline-before-return': 'off',

@@ -20,8 +20,3 @@ export enum Role {
   EventOrganizer = 'Event',
   SecurityRepresentative = 'Security',
 }
-
-export enum RoleLabel {
-  EventOrganizer = 'Event organizer',
-  SecurityRepresentative = 'Security representative',
-}

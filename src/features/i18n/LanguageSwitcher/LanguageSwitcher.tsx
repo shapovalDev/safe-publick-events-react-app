@@ -17,14 +17,14 @@ export const LanguageSwitcher = (): JSX.Element => {
   };
 
   return (
-    <Box>
+    <Box display="flex" justifyContent="space-between">
       {languageButtons.map((language: { label: string; value: string }) => {
         return (
           <Button
             type="button"
             color="inherit"
             variant="contained"
-            size="medium"
+            size="small"
             className={classes.languageSwitcher}
             key={language.label}
             onClick={() => chooseLanguageHandler(language.value)}

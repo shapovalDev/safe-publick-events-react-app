@@ -1,8 +1,6 @@
 import { SignIn, SignUp } from '../features/Auth';
-import { Home } from '../features/Home';
 
 export enum RoutePath {
-  HomePage = '/',
   SignIn = '/signIn',
   SignUp = '/signUp',
 }
@@ -13,7 +11,6 @@ export interface IRoute {
 }
 
 export const routesArray: IRoute[] = [
-  { path: RoutePath.HomePage, component: Home },
   { path: RoutePath.SignIn, component: SignIn },
   { path: RoutePath.SignUp, component: SignUp },
 ];

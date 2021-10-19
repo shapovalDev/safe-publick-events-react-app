@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { AccountMenu } from '../../UI/ProfileMenu/ProfileMenu';
 
 export const Header = (): JSX.Element => {
   return (
@@ -19,7 +19,7 @@ export const Header = (): JSX.Element => {
           >
             S.P.E
           </Typography>
-          <Button color="inherit">LogOut</Button>
+          <AccountMenu />
         </Toolbar>
       </AppBar>
     </Box>

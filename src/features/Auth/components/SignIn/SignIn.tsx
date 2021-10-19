@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Box, Button, FormControl, TextField, Typography } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './SignIn.styles';
 import covidSafeLogo from '../../assets/covid-19-safe.png';
@@ -13,6 +13,7 @@ export const SignIn = (): JSX.Element => {
   const [password, setPassword] = useState<string>('');
 
   const [t] = useTranslation();
+  const history = useHistory();
 
   const inputs: IAuthInput[] = [
     {
@@ -30,6 +31,11 @@ export const SignIn = (): JSX.Element => {
         setPassword(e.target.value),
     },
   ];
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    history.push('/');
+  };
 
   return (
     <Box className={classes.root}>
@@ -62,6 +68,7 @@ export const SignIn = (): JSX.Element => {
             variant="contained"
             size="medium"
             className={classes.submitButton}
+            onClick={(e: any) => onSubmit(e)}
           >
             {t('signIn.submitButton')}
           </Button>
