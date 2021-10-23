@@ -3,7 +3,7 @@ import { Container } from '@mui/material';
 import { Header } from '../Header/Header';
 
 interface IProps {
-  children: never;
+  children: any;
 }
 
 export const Screen = ({ children }: IProps): JSX.Element => {

@@ -8,10 +8,14 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useHistory } from 'react-router-dom';
 import { LanguageSwitcher } from '../../i18n';
+import { removeLocalStorageItem } from '../../../lib/LocalStorage';
 
 export const AccountMenu = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const history = useHistory();
+
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -19,6 +23,13 @@ export const AccountMenu = (): JSX.Element => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logOut = () => {
+    history.push('/signIn');
+    removeLocalStorageItem('accessToken');
+    handleClose();
+  };
+
   return (
     <>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -51,7 +62,7 @@ export const AccountMenu = (): JSX.Element => {
         </MenuItem>
         <Divider />
         <LanguageSwitcher />
-        <MenuItem style={{ color: 'red' }}>
+        <MenuItem style={{ color: 'red' }} onClick={logOut}>
           <ListItemIcon style={{ color: 'red' }}>
             <LogoutIcon fontSize="small" />
           </ListItemIcon>

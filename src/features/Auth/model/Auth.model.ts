@@ -17,6 +17,6 @@ export interface IMenuItem {
 }
 
 export enum Role {
-  EventOrganizer = 'Event',
-  SecurityRepresentative = 'Security',
+  EventOrganizer = 'user',
+  SecurityRepresentative = 'security',
 }

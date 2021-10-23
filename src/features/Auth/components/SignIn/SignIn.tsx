@@ -6,6 +6,7 @@ import { useStyles } from './SignIn.styles';
 import covidSafeLogo from '../../assets/covid-19-safe.png';
 import { IAuthInput } from '../../model/Auth.model';
 import { RoutePath } from '../../../../model/Routing';
+import { login } from '../../../../lib/Axios';
 
 export const SignIn = (): JSX.Element => {
   const classes = useStyles();
@@ -32,8 +33,15 @@ export const SignIn = (): JSX.Element => {
     },
   ];
 
-  const onSubmit = (e: any) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
+
+    setEmail('');
+    setPassword('');
+
+    const credentials = { email, password };
+    await login(credentials);
+
     history.push('/');
   };
 

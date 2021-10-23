@@ -8,11 +8,13 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './SignUp.styles';
 import { IAuthInput, Role } from '../../model/Auth.model';
 import { RoutePath } from '../../../../model/Routing';
+import { registration } from '../../../../lib/Axios';
+import { setLocalStorage } from '../../../../lib/LocalStorage';
 
 export const SignUp = (): JSX.Element => {
   const classes = useStyles();
@@ -24,6 +26,7 @@ export const SignUp = (): JSX.Element => {
   const [role, setRole] = useState<string>('');
 
   const [t] = useTranslation();
+  const history = useHistory();
 
   const inputs: IAuthInput[] = [
     {
@@ -55,6 +58,27 @@ export const SignUp = (): JSX.Element => {
         setPassword(e.target.value),
     },
   ];
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setRole('');
+
+    const userData = {
+      name: firstName,
+      surname: lastName,
+      email,
+      password,
+      role,
+    };
+    await registration(userData);
+
+    history.push('/');
+  };
 
   return (
     <Box className={classes.root}>
@@ -96,6 +120,7 @@ export const SignUp = (): JSX.Element => {
             variant="contained"
             size="medium"
             className={classes.submitButton}
+            onClick={(e: any) => handleSubmit(e)}
           >
             {t('signUp.submitButton')}
           </Button>
