@@ -78,7 +78,7 @@ export const ProfilePage = () => {
             <TextField
               className={classes.field}
               id="outlined-basic"
-              label="Second Name"
+              label="Last Name"
               variant="outlined"
               value={surname}
               onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => setSurname(e.target.value)}
