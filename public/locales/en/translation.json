@@ -20,5 +20,23 @@
   "language": {
     "en": "en",
     "ua": "ua"
+  },
+  "eventCreation": {
+    "button": "Create request",
+    "title": "Create event request",
+    "importance": {
+      "title": "Importance",
+      "lowest": "Lowest",
+      "medium": "Medium",
+      "highest": "Highest"
+    },
+    "amountOfPeople": "Amount of people",
+    "date": "Date",
+    "time": "Time",
+    "city": "City",
+    "linkWithDocument": "Link with document",
+    "description": "Description",
+    "numberOfGuards": "Number of guards",
+    "price": "Price"
   }
 }

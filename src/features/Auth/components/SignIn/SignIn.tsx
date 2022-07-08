@@ -7,11 +7,14 @@ import covidSafeLogo from '../../assets/covid-19-safe.png';
 import { IAuthInput } from '../../model/Auth.model';
 import { RoutePath } from '../../../../model/Routing';
 import { login } from '../../../../lib/Axios';
+import { AlertBlock } from '../../../UI';
+import { isValid } from '../../../../lib/Validation';
 
 export const SignIn = (): JSX.Element => {
   const classes = useStyles();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isLoginSuccessful, setIsLoginSuccessful] = useState<boolean>(true);
 
   const [t] = useTranslation();
   const history = useHistory();
@@ -21,34 +24,44 @@ export const SignIn = (): JSX.Element => {
       label: t('signIn.emailLabel'),
       type: 'text',
       value: email,
-      changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
-        setEmail(e.target.value),
+      changeFunction: (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
     },
     {
       label: t('signIn.passwordLabel'),
       type: 'password',
       value: password,
-      changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
-        setPassword(e.target.value),
+      changeFunction: (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value),
     },
   ];
 
   const onSubmit = async (e: any) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    setEmail('');
-    setPassword('');
+      setEmail('');
+      setPassword('');
 
-    const credentials = { email, password };
-    await login(credentials);
+      const credentials = { email, password };
+      await login(credentials);
 
-    history.push('/');
+      history.push(RoutePath.Home);
+    } catch (err) {
+      setIsLoginSuccessful(false);
+    }
   };
 
   return (
     <Box className={classes.root}>
+      {!isLoginSuccessful && (
+        <AlertBlock
+          title="Login Error"
+          content="Something went wrong. Try again!"
+          type="error"
+          onClick={() => setIsLoginSuccessful(true)}
+        />
+      )}
       <Box className={classes.imageBlock}>
-        <img className={classes.img} src={covidSafeLogo} alt="" />
+        <img className={classes.img} src="https://www.digiseller.ru/preview/560956/p1_1993998_8fdf2fc6.png" alt="" />
       </Box>
       <FormControl className={classes.form}>
         <Typography variant="h4" justifyContent="center">
@@ -75,6 +88,7 @@ export const SignIn = (): JSX.Element => {
             color="primary"
             variant="contained"
             size="medium"
+            disabled={isValid({ email, password })}
             className={classes.submitButton}
             onClick={(e: any) => onSubmit(e)}
           >

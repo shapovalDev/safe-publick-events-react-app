@@ -1,20 +1,13 @@
 import React, { ChangeEvent, useState } from 'react';
-import {
-  Box,
-  Button,
-  FormControl,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Button, FormControl, TextField, Typography } from '@mui/material';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './SignUp.styles';
 import { IAuthInput, Role } from '../../model/Auth.model';
 import { RoutePath } from '../../../../model/Routing';
 import { registration } from '../../../../lib/Axios';
-import { setLocalStorage } from '../../../../lib/LocalStorage';
+import { isValid } from '../../../../lib/Validation';
+import { CustomSelect } from '../../../UI';
 
 export const SignUp = (): JSX.Element => {
   const classes = useStyles();
@@ -33,29 +26,25 @@ export const SignUp = (): JSX.Element => {
       label: t('signUp.firstNameLabel'),
       type: 'text',
       value: firstName,
-      changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
-        setFirstName(e.target.value),
+      changeFunction: (e: ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value),
     },
     {
       label: t('signUp.lastNameLabel'),
       type: 'text',
       value: lastName,
-      changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
-        setLastName(e.target.value),
+      changeFunction: (e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value),
     },
     {
       label: t('signUp.emailLabel'),
       type: 'text',
       value: email,
-      changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
-        setEmail(e.target.value),
+      changeFunction: (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
     },
     {
       label: t('signUp.passwordLabel'),
       type: 'password',
       value: password,
-      changeFunction: (e: ChangeEvent<HTMLInputElement>) =>
-        setPassword(e.target.value),
+      changeFunction: (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value),
     },
   ];
 
@@ -98,18 +87,12 @@ export const SignUp = (): JSX.Element => {
             />
           );
         })}
-        <Select
-          className={classes.select}
+        <CustomSelect
+          mapArray={[Role.EventOrganizer, Role.SecurityRepresentative]}
+          label="Role"
           value={role}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          <MenuItem defaultChecked value={Role.EventOrganizer}>
-            {t('signUp.eventOrganizer')}
-          </MenuItem>
-          <MenuItem value={Role.SecurityRepresentative}>
-            {t('signUp.securityRepresentative')}
-          </MenuItem>
-        </Select>
+          onChange={(e: any) => setRole(e.target.value)}
+        />
         <Box className={classes.buttonBlock}>
           <NavLink to={RoutePath.SignIn} className={classes.link}>
             {t('signUp.createdAccount')}
@@ -119,6 +102,7 @@ export const SignUp = (): JSX.Element => {
             color="primary"
             variant="contained"
             size="medium"
+            disabled={isValid({ firstName, lastName, email, password, role })}
             className={classes.submitButton}
             onClick={(e: any) => handleSubmit(e)}
           >

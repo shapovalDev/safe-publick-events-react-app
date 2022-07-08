@@ -18,7 +18,25 @@
     "submitButton": "Готово"
   },
   "language": {
-    "en": "англ",
+    "en": "анг",
     "ua": "укр"
+  },
+  "eventCreation": {
+    "button": "Створити запит",
+    "title": "Створити запит на захід",
+    "importance": {
+      "title": "Важливість",
+      "lowest": "Найнижча",
+      "medium": "Середня",
+      "highest": "Найвища"
+    },
+    "amountOfPeople": "Кількість людей",
+    "date": "Дата",
+    "time": "Проміжок часу",
+    "city": "Місто",
+    "linkWithDocument": "Посилання на дозвіл",
+    "description": "Опис",
+    "numberOfGuards": "Кількість охоронців",
+    "price": "Ціна"
   }
 }

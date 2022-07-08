@@ -8,13 +8,15 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useHistory } from 'react-router-dom';
-import { LanguageSwitcher } from '../../i18n';
+import { NavLink, useHistory } from 'react-router-dom';
 import { removeLocalStorageItem } from '../../../lib/LocalStorage';
+import { authStore } from '../../../store/Auth.store';
+import { RoutePath } from '../../../model/Routing';
 
 export const AccountMenu = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const history = useHistory();
+  const avatarName = authStore.userData !== null && authStore?.userData?.name[0] + authStore?.userData?.surname[0];
 
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -25,8 +27,9 @@ export const AccountMenu = (): JSX.Element => {
   };
 
   const logOut = () => {
-    history.push('/signIn');
-    removeLocalStorageItem('accessToken');
+    authStore.setUserData(null);
+    removeLocalStorageItem('accessToken', 'currentUserRole');
+    history.push(RoutePath.SignIn);
     handleClose();
   };
 
@@ -35,7 +38,7 @@ export const AccountMenu = (): JSX.Element => {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="Account settings">
           <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-            <Avatar sx={{ width: 32, height: 32 }}>A</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>{avatarName}</Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -57,11 +60,16 @@ export const AccountMenu = (): JSX.Element => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
-          <Avatar /> My account
-        </MenuItem>
+        <NavLink
+          to={RoutePath.Profile}
+          style={{ textDecoration: 'none' }}
+          onClick={() => history.push(RoutePath.Profile)}
+        >
+          <MenuItem>
+            <Avatar>{avatarName}</Avatar> My account
+          </MenuItem>
+        </NavLink>
         <Divider />
-        <LanguageSwitcher />
         <MenuItem style={{ color: 'red' }} onClick={logOut}>
           <ListItemIcon style={{ color: 'red' }}>
             <LogoutIcon fontSize="small" />

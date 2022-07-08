@@ -6,6 +6,6 @@ export const setLocalStorage = (key: string, value: string): void => {
   localStorage.setItem(key, value);
 };
 
-export const removeLocalStorageItem = (key: string) => {
-  localStorage.removeItem(key);
-};
+export function removeLocalStorageItem(...arg: any) {
+  for (let i = 0; i < arguments.length; i += 1) localStorage.removeItem(arguments[i]);
+}

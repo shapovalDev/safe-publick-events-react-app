@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './LanguageSwitcher.styles';
 
@@ -17,22 +17,19 @@ export const LanguageSwitcher = (): JSX.Element => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-between">
+    <ToggleButtonGroup
+      color="primary"
+      // value={alignment}
+      exclusive
+      // onChange={handleChange}
+    >
       {languageButtons.map((language: { label: string; value: string }) => {
         return (
-          <Button
-            type="button"
-            color="inherit"
-            variant="contained"
-            size="small"
-            className={classes.languageSwitcher}
-            key={language.label}
-            onClick={() => chooseLanguageHandler(language.value)}
-          >
+          <ToggleButton key={language.label} value={language.value}>
             {language.label}
-          </Button>
+          </ToggleButton>
         );
       })}
-    </Box>
+    </ToggleButtonGroup>
   );
 };

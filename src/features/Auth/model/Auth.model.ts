@@ -1,4 +1,6 @@
 import { ChangeEventHandler } from 'react';
+import { authStore } from '../../../store/Auth.store';
+import { getLocalStorage } from '../../../lib/LocalStorage';
 
 export interface IUser {
   [key: string]: string;
@@ -20,3 +22,5 @@ export enum Role {
   EventOrganizer = 'user',
   SecurityRepresentative = 'security',
 }
+
+export const isEventOrganizer = getLocalStorage('currentUserRole') === Role.EventOrganizer;
